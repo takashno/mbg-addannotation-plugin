@@ -115,7 +115,9 @@ public class AddFieldAnnotaionPlugin extends PluginAdapter {
 					// アノテーション追加
 					field.addAnnotation("@"
 							+ ClassUtils.getShortCanonicalName(ac
-									.getFullQueryAnnotationName()));
+									.getFullQueryAnnotationName())
+							+ (ac.getAttribute() != null ? "("
+									+ ac.getAttribute() + ")" : ""));
 					topLevelClass.addImportedType(new FullyQualifiedJavaType(ac
 							.getFullQueryAnnotationName()));
 

@@ -14,6 +14,9 @@ public class AnnotationConfig {
 	/** FQCNのアノテーション名 */
 	private String fullQueryAnnotationName;
 
+	/** アノテーション属性値 */
+	private String attribute;
+
 	/** テーブルカラム名マップ */
 	private List<TableConfig> tableConfigs = new ArrayList<TableConfig>();
 
@@ -45,6 +48,21 @@ public class AnnotationConfig {
 	 */
 	public void setTableConfigs(List<TableConfig> tableConfigs) {
 		this.tableConfigs = tableConfigs;
+	}
+
+	/**
+	 * @return the attribute
+	 */
+	public String getAttribute() {
+		return attribute;
+	}
+
+	/**
+	 * @param attribute
+	 *            the attribute to set
+	 */
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
 	}
 
 }
