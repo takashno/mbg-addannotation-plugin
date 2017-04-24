@@ -1,0 +1,10 @@
+annotations:
+- fullQueryAnnotationName: "com.zomu.t.test.Annoataion"
+  tableConfigs:
+  - tableName: "user"
+    regexp: false
+    columnConfigs:
+    - columnName: "username"
+      regexp: false
+    - columnName: "column2"
+      regexp: false

@@ -1,9 +1,0 @@
-- fullQueryAnnotationName: "com.zomu.t.example.ExampleAnnoataion"
-  tableConfigs:
-  - tableName: "table1"
-    regexp: false
-    columnConfigs:
-    - columnName: "column1"
-      regexp: false
-    - columnName: "column2"
-      regexp: false

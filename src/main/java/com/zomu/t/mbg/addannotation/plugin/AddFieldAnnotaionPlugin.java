@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
@@ -47,7 +46,13 @@ public class AddFieldAnnotaionPlugin extends PluginAdapter {
 	 */
 	public boolean validate(List<String> warnings) {
 		configFilePath = properties.getProperty("configFilePath");
+		if (StringUtils.isEmpty(configFilePath)) {
+			return false;
+		}
 		config = ConfigFileUtils.read(configFilePath);
+		if (config == null) {
+			return false;
+		}
 		return true;
 	}
 
@@ -68,6 +73,7 @@ public class AddFieldAnnotaionPlugin extends PluginAdapter {
 
 				boolean targetTable = false;
 
+				// 正規表現フラグが設定されていたら、正規表現で判定する
 				if (tc.isRegexp()) {
 					Pattern p = Pattern.compile(tc.getTableName());
 					Matcher m = p.matcher(introspectedTable
@@ -89,6 +95,7 @@ public class AddFieldAnnotaionPlugin extends PluginAdapter {
 
 					boolean targetColumn = false;
 
+					// 正規表現フラグが設定されていたら、正規表現で判定する
 					if (cc.isRegexp()) {
 						Pattern p = Pattern.compile(cc.getColumnName());
 						Matcher m = p.matcher(introspectedColumn
