@@ -1,2 +1,41 @@
-# mbg-addannotation-plugin
-MyBatisGenerator Add Annotation Plugin.
+= mbg-addannotation-plugin
+
+== Overview
+これはMyBatisGeneratorで生成するModel/Entityに対して任意のアノテーションを付与するための汎用プラグインです。
+
+== Description
+MyBatisGeneratorでは、Model/Entityに対して通常の方法ではアノテーションを割り振ることはできません。このプラグインを利用すると単純なアノテーションを割り振りたい場合に簡単に実現することができます。 +
+ただし、BeanValidationのアノテーションのように複数のアノテーション等を付与するための用途には単純すぎるため向いていません。
+
+== How To Use
+このプラグイン独自のYamlにてアノテーション付与の指示を行うため、作成します。
+
+[source,YAML]
+----
+annotations:
+- fullQueryAnnotationName: com.example.Annoataion //<1>
+  attribute: value = "example" //<2>
+  tableConfigs:
+  - tableName: "example_table" //<3>
+    regexp: false //<4>
+    columnConfigs:
+    - columnName: "example_column1" //<5>
+      regexp: false //<6>
+    - columnName: "example_column2"
+      regexp: false
+
+----
+
+<1> 追加したいアノテーションをFQCNで記載します。
+<2> アノテーションの属性値を全て記載する。そのまあ出力されます。
+
+
+
+MyBatisGeneratorの出力設定ファイルにプラグイン利用の定義を行います。
+
+[source,XML]
+----
+<plugin type="com.zomu.t.mbg.addannotation.plugin.AddFieldAnnotaionPlugin">
+	<property name="configFilePath" value="設定ファイルフルパス"/>
+</plugin>
+----
